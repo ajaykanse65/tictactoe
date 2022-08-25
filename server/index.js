@@ -1,8 +1,9 @@
-const express = require('express');
+const express =require('express');
 const http = require('http');
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const app = express();
+
 const port = process.env.PORT || 3000;
 var server = http.createServer(app);
 
@@ -14,15 +15,20 @@ app.use(express.json());
 const DB = "mongodb+srv://juggad:test123@cluster0.gmuocbw.mongodb.net/?retryWrites=true&w=majority";
 
 io.on("connection", (socket) => {
-console.log("connected");
+    console.log("connected!");
 });
 
-mongoose.connect(DB).then(() => {
-console.log("DB done");
-}).catch((e) => {
-console.log(e);
+mongoose
+    .connect(DB)
+    .then(() => {
+    console.log("Connection Successful!");
+})
+.catch((e) =>{
+    console.log(e);
 });
 
-server.listen(port,'0.0.0.0', () => {
-console.log(`done ${port}`);
+server.listen(port, '0.0.0.0', () => {
+    console.log(`server started and running on port ${port}`);
 });
+
+

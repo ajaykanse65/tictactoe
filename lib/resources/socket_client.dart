@@ -10,6 +10,7 @@ class SocketClient {
       'autoConnect': false,
     });
     socket!.connect();
+
   }
 
   static SocketClient get instance {

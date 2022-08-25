@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:juugad/resources/socket_methods.dart';
 import 'package:juugad/responsive/responsive.dart';
 import 'package:juugad/widget/custom_button.dart';
 import 'package:juugad/widget/custom_text.dart';
@@ -6,6 +7,8 @@ import 'package:juugad/widget/custom_text_field.dart';
 
 class CreateRoom extends StatefulWidget {
   static String routeName = '/create-room';
+
+
   const CreateRoom({Key? key}) : super(key: key);
 
   @override
@@ -14,6 +17,7 @@ class CreateRoom extends StatefulWidget {
 
 class _CreateRoomState extends State<CreateRoom> {
   final TextEditingController _nameController = TextEditingController();
+  final SocketMethods _socketMethods = SocketMethods();
 
   @override
   void dispose(){
@@ -40,7 +44,7 @@ class _CreateRoomState extends State<CreateRoom> {
               SizedBox(height: size.height*0.08,),
               CustomTextFeild(controller: _nameController, hintText: 'Enter your name',),
               SizedBox(height: size.height*0.045,),
-              CustomButton(onTap: (){}, text: "Create",)
+              CustomButton(onTap: ()=> _socketMethods.createRoom(_nameController.text), text: "Create",)
             ],
           ),
         ),
